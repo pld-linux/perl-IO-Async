@@ -6,24 +6,30 @@
 %define	pdir	IO
 %define	pnam	Async
 Summary:	IO::Async - perform asynchronous filehandle IO and other operations
-#Summary(pl.UTF-8):
+Summary(pl.UTF-8):	IO::Async - asynchroniczne operacje we/wy na plikach i inne
 Name:		perl-IO-Async
-Version:	0.28
+Version:	0.39
 Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	http://search.cpan.org/CPAN/authors/id/P/PE/PEVANS/IO-Async-%{version}.tar.gz
-# Source0-md5:	83415cfa4596edb55db36376ad9ce86a
+Source0:	http://www.cpan.org/modules/by-module/IO/PEVANS/IO-Async-%{version}.tar.gz
+# Source0-md5:	084f8f925827db81c64036afb05be9fb
 URL:		http://search.cpan.org/dist/IO-Async/
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
-BuildRequires:	perl(Async::MergePoint)
-BuildRequires:	perl(Socket::GetAddrInfo) >= 0.08
-BuildRequires:	perl(Test::Refcount)
-BuildRequires:	perl-Heap >= 0.8
+BuildRequires:	perl-Async-MergePoint
+BuildRequires:	perl-CPS
+BuildRequires:	perl-Heap >= 0.80
+BuildRequires:	perl-Socket-GetAddrInfo >= 0.18
+BuildRequires:	perl-Storable
+BuildRequires:	perl-Time-HiRes
 BuildRequires:	perl-Test-Exception
+BuildRequires:	perl-Test-Fatal
+BuildRequires:	perl-Test-Identity
+BuildRequires:	perl-Test-Refcount
+BuildRequires:	perl-Test-Warn
 %endif
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -32,23 +38,19 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 This collection of modules allows programs to be written that perform
 asynchronous filehandle IO operations. A typical program using them
 would consist of a single subclass of IO::Async::Loop to act as a
-container o other objects, which perform the actual IO work required
-by the program. As as IO handles, the loop also supports timers and
-signal handlers, and includes more higher-level functionallity built
-on top of these basic parts.
+container of other objects, which perform the actual IO work required
+by the program. As well as IO handles, the loop also supports timers
+and signal handlers, and includes more higher-level functionallity
+built on top of these basic parts.
 
-Because there are a lot of classes in this collection, the following
-overview gives a brief description of each.
-
-The base class of all the event handling subclasses is
-IO::Async::Notifier. It does not perform any IO operations itself, but
-instead acts as a base class to build the specific IO functionallity
-upon. It can also coordinate a collection of other Notifiers contained
-within it, forming a tree structure.
-
-The following sections describe particular types of Notifier.
-
-# %description -l pl.UTF-8 # TODO
+%description -l pl.UTF-8
+Zestaw modułów umożliwiających pisanie programów wykonywanie
+asynchroncznych operacji we/wy na uchwytach plików. Typowy program
+wykonujący je składa się z pojedynczej podklasy IO::Async::Loop
+pełniącej rolę kontenera innych obiektów, wykonujących właściwe
+operacje we/wy wymagane przez program. Oprócz obsługi we/wy pętla
+obsługuje także stopery i sygnały, a także zawiera nieco funkcji
+wyższego poziomu stworzonych w oparciu o te podstawowe elementy.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
@@ -75,7 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Changes README
-%{perl_vendorlib}/IO/*.pm
+%{perl_vendorlib}/IO/Async.pm
 %{perl_vendorlib}/IO/Async
-%{_mandir}/man3/*
+%{_mandir}/man3/IO::Async*.3pm*
 %{_examplesdir}/%{name}-%{version}
