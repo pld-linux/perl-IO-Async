@@ -8,13 +8,13 @@
 Summary:	IO::Async - perform asynchronous filehandle IO and other operations
 Summary(pl.UTF-8):	IO::Async - asynchroniczne operacje we/wy na plikach i inne
 Name:		perl-IO-Async
-Version:	0.45
-Release:	2
+Version:	0.74
+Release:	1
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/IO/PEVANS/IO-Async-%{version}.tar.gz
-# Source0-md5:	00f4213a413bb1fc431bfe56568c0192
+# Source0-md5:	cf5f6a54c07f1d6f0ca484cac057bb6b
 URL:		http://search.cpan.org/dist/IO-Async/
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
