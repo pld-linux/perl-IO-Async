@@ -15,14 +15,17 @@ Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/IO/PEVANS/IO-Async-%{version}.tar.gz
 # Source0-md5:	cf5f6a54c07f1d6f0ca484cac057bb6b
 URL:		http://search.cpan.org/dist/IO-Async/
+BuildRequires:	perl-Module-Build
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 %if %{with tests}
 BuildRequires:	perl-Async-MergePoint
 BuildRequires:	perl-CPS
+BuildRequires:	perl-Future
 BuildRequires:	perl-Heap >= 0.80
 BuildRequires:	perl-Socket-GetAddrInfo >= 0.18
 BuildRequires:	perl-Storable
+BuildRequires:	perl-Struct-Dumb
 BuildRequires:	perl-Time-HiRes
 BuildRequires:	perl-Test-Exception
 BuildRequires:	perl-Test-Fatal
