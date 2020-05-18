@@ -57,6 +57,9 @@ wyższego poziomu stworzonych w oparciu o te podstawowe elementy.
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
 
+# No resolver / network on builders
+%{__rm} t/50resolver.t
+
 %build
 %{__perl} Build.PL \
 	destdir=$RPM_BUILD_ROOT \
